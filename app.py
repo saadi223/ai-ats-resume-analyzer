@@ -182,15 +182,15 @@ JOB DESCRIPTION:
 ----------------
 """
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt,
-    )
+   response = client.interactions.create(
+    model="gemini-3.6-flash",
+    input=prompt,
+)
 
-    if not response.text:
-        raise ValueError("Gemini returned an empty response.")
+if not response.output_text:
+    raise ValueError("Gemini returned an empty response.")
 
-    return parse_json_response(response.text)
+return parse_json_response(response.output_text)
 
 
 # -----------------------------
